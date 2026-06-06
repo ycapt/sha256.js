@@ -111,6 +111,17 @@ function S1(s){
     return array1;
 }
 
+function SHA256(str){
+const buf1 = Array(64).fill(0);
+
+str.split("").forEach((v,i) => {
+    buf1[i] = getCharCode(v);
+})
+
+buf1[str.length] = 128;
+
+buf1[63] = str.length*8;
+
 let H = [
     Array.from({length: 4},(_,i)=>Number("0x"+"6a09e667".slice(i*2,i*2+2))),
     Array.from({length: 4},(_,i)=>Number("0x"+"bb67ae85".slice(i*2,i*2+2))),
@@ -120,7 +131,7 @@ let H = [
     Array.from({length: 4},(_,i)=>Number("0x"+"9b05688c".slice(i*2,i*2+2))),
     Array.from({length: 4},(_,i)=>Number("0x"+"1f83d9ab".slice(i*2,i*2+2))),
     Array.from({length: 4},(_,i)=>Number("0x"+"5be0cd19".slice(i*2,i*2+2))),
-]
+];
 
 const K = [
     Array.from({length: 4},(_,i)=>Number("0x"+"428a2f98".slice(i*2,i*2+2))),
@@ -188,28 +199,6 @@ const K = [
     Array.from({length: 4},(_,i)=>Number("0x"+"bef9a3f7".slice(i*2,i*2+2))),
     Array.from({length: 4},(_,i)=>Number("0x"+"c67178f2".slice(i*2,i*2+2))),
 ];
-
-function SHA256(str){
-const buf1 = Array(64).fill(0);
-
-str.split("").forEach((v,i) => {
-    buf1[i] = getCharCode(v);
-})
-
-buf1[str.length] = 128;
-
-buf1[63] = str.length*8;
-
-H = [
-    Array.from({length: 4},(_,i)=>Number("0x"+"6a09e667".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"bb67ae85".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"3c6ef372".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"a54ff53a".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"510e527f".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"9b05688c".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"1f83d9ab".slice(i*2,i*2+2))),
-    Array.from({length: 4},(_,i)=>Number("0x"+"5be0cd19".slice(i*2,i*2+2))),
-]
 
 let N = 1;
 let M = Array.from({length: 16},(_, i)=>buf1.slice(i*4, i*4+4));
