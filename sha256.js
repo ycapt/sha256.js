@@ -249,7 +249,3 @@ H[7] = add2Arrays(H[7], h);
 
 return H.map(v1 => v1.map(v2 => Number(v2).toString(16).padStart(2, '0')).join("")).join("")
 }
-
-console.log(Date.now())
-console.log(SHA256("JRBlockkop"));
-console.log(Date.now())
